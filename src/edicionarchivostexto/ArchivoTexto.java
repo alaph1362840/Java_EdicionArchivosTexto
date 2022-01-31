@@ -138,27 +138,27 @@ public class ArchivoTexto {
         }
         //------ CREADOR DE PALABRAS REEMPLAZO -----
         String[] lista;
+        
         for(String x:list_lineas_reemplazo){
+            Palabra y;
             lista=x.split(separador);
+            System.out.println("Elementos a reemplazar.");            
             if (lista.length==1) {
-                Palabra y= new Palabra(lista[0],"");
+                y= new Palabra(lista[0],"");
                 this.list_palabras.add(y);
             } 
             if (lista.length==2) {
-                Palabra y= new Palabra(lista[0],lista[1]);
+                y= new Palabra(lista[0],lista[1]);
                 this.list_palabras.add(y);
-            }                      
+            }
+            
         }
         //------- REMPLAZAR PALABRAS ---
         int i = 0;
         for(String x: this.lineas){            
             for(Palabra y: this.list_palabras){
                 if (x.contains(y.txtArchivo)) {
-                    System.out.println("Texto a cambiar "+ y.txtArchivo);
-                    System.out.println("Texto a final "+ y.txtRemplazo);
-                    System.out.println("X (LINEA ANTES): "+ x);
                     x = x.replace(y.txtArchivo, y.txtRemplazo);
-                    System.out.println("X (LINEA DESPUES): "+ x);
                 }                
             }
             this.lineas.set(i, x);
